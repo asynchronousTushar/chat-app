@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/styles.min.css">
+    <title>Chat App</title>
+</head>
+
+<body>
+
+    <div class="chat">
+        <div class="chat__sidebar" id="sidebar">
+
+        </div>
+        <div class="chat__main">
+            <div id="messages" class="chat__messages"></div>
+
+            <div class="compose">
+                <form id="message-form">
+                    <input type="text" name="message" placeholder="message" autocomplete="off">
+                    <button>send</button>
+                </form>
+                <button id="send-location">Send Location</button>
+            </div>
+        </div>
+    </div>
+
+    <script id="message-template" type="text/html">
+        <div class="message">
+            <span class="message__name">{{username}}</span>
+            <span class="message__meta">{{createdAt}}</span>
+            <p>{{message}}</p>
+        </div>
+    </script>
+
+    <script id="location-template" type="text/html">
+        <div class="message">
+            <span class="message__name">{{username}}</span>
+            <span class="message__meta">{{createdAt}}</span>
+            <p><a href="{{url}}" target="_blank">My current location</a></p>
+        </div>
+    </script>
+
+    <script id="sidebar-template" type="text/html">
+        <div>
+            <h1 class="room-title">{{ room }}</h1>
+            <h3 class="list-title">Users</h3>
+            <ul class="users">
+               {{#users}}
+                    <li>{{username}}</li>
+               {{/users}}
+            </ul>
+</div>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.3/qs.min.js"
+        integrity="sha512-juaCj8zi594KHQqb92foyp87mCSriYjw3BcTHaXsAn4pEB1YWh+z+XQScMxIxzsjfM4BeVFV3Ij113lIjWiC2w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.0/mustache.min.js"
+        integrity="sha512-ZtynsaJmQRo6Ru0RHAPHnMfmTCLSTRcAoxbl5csw47H9EbEZWpns3URyVNgAvj6KQvEM6ysjTQZ3jj61go0NsQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/chat.js"></script>
+</body>
+
+</html>
